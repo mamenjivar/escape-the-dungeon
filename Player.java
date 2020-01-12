@@ -7,6 +7,8 @@
  * Has all player attributes
  */
 class Player {
+    Weapon weapon;
+
     // amount of health player currently has 
     private int health;
 
@@ -17,6 +19,7 @@ class Player {
     // constructor
     public Player(){
         health = MAX_HEALTH;
+        weapon = new Weapon();
     }
 
     /**
@@ -27,6 +30,15 @@ class Player {
      */
     public void playerHit(int hitPoint){
         health -=  hitPoint;
+    }
+
+    /**
+     * finalizes weapon choice for player
+     * 
+     * @param choice
+     */
+    public void chooseWeapon(int choice){
+        weapon.chooseWeapon(choice);
     }
 
     /**

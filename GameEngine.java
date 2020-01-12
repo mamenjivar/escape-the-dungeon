@@ -74,7 +74,6 @@ class GameEngine{
             default:
 
         }
-
     }
 
     /**
@@ -86,10 +85,11 @@ class GameEngine{
         // title for start game
         ui.gameStartTitle(); 
 
-        // makes player choose the type of weapon
-        // to use
+        // makes player choose the
+        // type of weapon to use
         ui.weaponSelect();
         weaponNum = keyboard.nextInt();
+        player.chooseWeapon(weaponNum);
 
         // loops until 10 steps taken to exit cave
         for(int i = 0; i < MAX_STEPS; i++){
