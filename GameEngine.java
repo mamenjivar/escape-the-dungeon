@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 class GameEngine{
     UserInterface ui;
+    Player player;
+    Enemy enemy;
+
     Scanner keyboard; 
 
     // 10 steps to exit dungeon
@@ -22,7 +25,10 @@ class GameEngine{
     // Constructor
     public GameEngine(){
         ui = new UserInterface();
+        player = new Player(); // might need to remove from here in order to create multiple players for multiple games
+
         keyboard = new Scanner(System.in);
+
         steps = 0;
     }
 
@@ -76,13 +82,20 @@ class GameEngine{
      * to escape dungeon
      */
     public void gameStart(){
+        int weaponNum = 0;
         // title for start game
         ui.gameStartTitle(); 
+
+        // makes player choose the type of weapon
+        // to use
+        ui.weaponSelect();
+        weaponNum = keyboard.nextInt();
 
         // loops until 10 steps taken to exit cave
         for(int i = 0; i < MAX_STEPS; i++){
             ui.stepsTaken(steps + 1); // steps taken so far
-            
+            ui.playerHealth(player.getHealth());
+            situation();
             incrementSteps(); // step taken after every encounter/situation
         }
 
@@ -90,8 +103,13 @@ class GameEngine{
         ui.exitDungeon();
     }
 
-    public void situation(){
-
+    /**
+     * when situation arises
+     * either enemy spawns, or nothing happens
+     */
+    public void situation(){ 
+        enemy = new Enemy(); // creates new enemy to fight
+        ui.enemyHealth(enemy.getHealth()); // tracks enemy health health
     }
 
     /**

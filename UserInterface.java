@@ -10,6 +10,9 @@
 
  class UserInterface {
 
+    /**
+     * Main menu for application
+     */
     public void mainMenu(){
         System.out.print("\nMain Menu\n"
                             + "1) Start Game\n"
@@ -53,12 +56,52 @@
     }
 
     /**
+     * prints how much health player has
+     * to keep track of it
+     * 
+     * @param health
+     */
+    public void playerHealth(int health){
+        System.out.println("Player has " + health + " remaining.");
+    }
+
+    /**
+     * prints how much health enemy has
+     * to keep track of it
+     * 
+     * @param health
+     */
+    public void enemyHealth(int health) {
+        System.out.println("Enemy has " + health + " remaining.\n");
+    }
+
+    /**
      * how many steps user has taken so far
      * 
      * @param steps
      */
     public void stepsTaken(int steps){
         System.out.println("You have taken " + steps + " step(s)");
+    }
+
+    /**
+     * Have player select weapon to use
+     */
+    public void weaponSelect() {
+        System.out.println("Please choose a weapon:\n"
+                            + "1) Handgun\n"
+                            + "      Accuracy: 80%\n"
+                            + "      Clip: 7 rounds\n"
+                            + "      Damage: 1\n"
+                            + "2) Shotgun\n"
+                            + "      Accuracy: 50%\n"
+                            + "      Clip: 5 rounds\n"
+                            + "      Damage: 3\n"
+                            + "3) Rifle\n"
+                            + "      Accuracy: 90%\n"
+                            + "      Clip: 10 rounds\n"
+                            + "      Damage: 2" );
+        System.out.print(">> ");
     }
 
     /**
