@@ -62,7 +62,7 @@
      * @param health
      */
     public void playerHealth(int health){
-        System.out.println("Player has " + health + " remaining.");
+        System.out.println("Player has " + health + " health remaining.");
     }
 
     /**
@@ -72,7 +72,45 @@
      * @param health
      */
     public void enemyHealth(int health) {
-        System.out.println("Enemy has " + health + " remaining.\n");
+        System.out.println("Enemy has " + health + " health remaining.\n");
+    }
+
+    /**
+     * Prints when the enemy has died and has lost
+     * all health
+     */
+    public void enemyDied(){
+        System.out.println("The Enemy has died!");
+    }
+
+    /**
+     * prompts user to shoot or run away
+     * when they encounter an enemy
+     */
+    public void encounter(){
+        System.out.print("Would you like to: \n"
+                            + "   (s) shoot\n"
+                            + "   (r) run\n"
+                            + "   >> ");
+    }
+
+    /**
+     * prints what weapon the user is using 
+     */
+    public void selectedWeapon(int weaponNumber){
+        switch(weaponNumber){
+            case 1: 
+                System.out.println("You have selected the Handgun");
+                break;
+            case 2:
+                System.out.println("You have selected the Shotgun");
+                break;
+            case 3:
+                System.out.println("You have selected the Rifle");
+                break;
+            default:
+                System.out.println("Weapon does not exist (UI)");
+        }
     }
 
     /**

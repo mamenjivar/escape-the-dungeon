@@ -33,6 +33,23 @@ class Player {
     }
 
     /**
+     * Simulates player pulling the trigger
+     */
+    public void playerShoot(){
+        weapon.shoot();
+    }
+
+    /**
+     * will return the damage caused by 
+     * weapon of choice
+     * 
+     * @return 
+     */
+    public int playerGunDamage(){
+        return weapon.damage();
+    }
+
+    /**
      * finalizes weapon choice for player
      * 
      * @param choice
@@ -51,7 +68,7 @@ class Player {
     public boolean deadAlive(){
         boolean statusHealth;
 
-        if(health == DEAD_HEALTH){
+        if(health <= DEAD_HEALTH){
             statusHealth = true;
         } else {
             statusHealth = false;

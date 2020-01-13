@@ -11,6 +11,7 @@ class Weapon{
     // holds the type of gun/ ammunition for that particular weapon
     private int gunType;
     private int gunAmmunition;
+    private int gunDamage;
 
 
     // pistol = 1
@@ -43,14 +44,17 @@ class Weapon{
     public void chooseWeapon(int choose){
         gunType = choose;
         switch(choose){
-            case 1: 
+            case 1: // handgun choice
                 gunAmmunition = MAX_HANDGUN_AMMO;
+                gunDamage = MAX_DAMAGE_HANDGUN;
                 break;
-            case 2:
-                 gunAmmunition = MAX_SHOTGUN_AMMO;
-                 break;
-            case 3:
+            case 2: // shotgun choice
+                gunAmmunition = MAX_SHOTGUN_AMMO;
+                gunDamage = MAX_DAMAGE_SHOTGUN;
+                break;
+            case 3: // rifle choice
                 gunAmmunition = MAX_RIFLE_AMMO;
+                gunDamage = MAX_DAMAGE_RIFLE;
                 break;
             default:
                 System.out.println("Weapon does not exist (weapon class)");
@@ -62,6 +66,17 @@ class Weapon{
      */
     public void shoot(){
         gunAmmunition--;
+    }
+
+    /**
+     * When the user inflicts damage to enemy
+     * or when enemy inflicts damage to user
+     * 
+     * @param gunDamage
+     * @return
+     */
+    public int damage(){
+        return gunDamage;
     }
 
     /**
@@ -79,5 +94,23 @@ class Weapon{
      */
     public int getGunType(){
         return gunType;
+    }
+
+    /**
+     * Setter for ammunition of weapon
+     * 
+     * @param gunAmmunition
+     */
+    public void setGunAmmunition(int gunAmmunition){
+        this.gunAmmunition = gunAmmunition;
+    }
+
+    /**
+     * getter for ammunition of weapon
+     * 
+     * @return
+     */
+    public int getGunAmmunition(){
+        return gunAmmunition;
     }
 }

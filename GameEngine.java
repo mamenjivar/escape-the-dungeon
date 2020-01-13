@@ -19,8 +19,9 @@ class GameEngine{
     // 0-9 for programming purposes = 10
     final int MAX_STEPS = 10;
 
-    // amount of steps user takes
-    int steps;
+    int steps; // amount of steps user takes
+    int weaponNum; // type of weapon by player
+
 
     // Constructor
     public GameEngine(){
@@ -30,6 +31,7 @@ class GameEngine{
         keyboard = new Scanner(System.in);
 
         steps = 0;
+        weaponNum = 0;
     }
 
     // starts the game
@@ -81,15 +83,10 @@ class GameEngine{
      * to escape dungeon
      */
     public void gameStart(){
-        int weaponNum = 0;
         // title for start game
         ui.gameStartTitle(); 
 
-        // makes player choose the
-        // type of weapon to use
-        ui.weaponSelect();
-        weaponNum = keyboard.nextInt();
-        player.chooseWeapon(weaponNum);
+        weaponSelect(); // selects weapon for player to use
 
         // loops until 10 steps taken to exit cave
         for(int i = 0; i < MAX_STEPS; i++){
@@ -104,16 +101,66 @@ class GameEngine{
     }
 
     /**
+     * 
+     */
+    public void weaponSelect(){
+        // makes player choose the
+        // type of weapon to use
+        ui.weaponSelect();
+        weaponNum = keyboard.nextInt();
+        keyboard.nextLine();
+        player.chooseWeapon(weaponNum);
+
+        ui.selectedWeapon(weaponNum);
+    }
+
+    /**
      * when situation arises
      * either enemy spawns, or nothing happens
      */
     public void situation(){ 
+        boolean loop = true;
+        String encounter = null;
+
         enemy = new Enemy(); // creates new enemy to fight
-        ui.enemyHealth(enemy.getHealth()); // tracks enemy health health
+        ui.enemyHealth(enemy.getHealth()); // tracks enemy health
+
+        // loops for user to choose if wants to pull trigger or not
+        while(loop){
+            ui.encounter(); // shoot or run
+            encounter = keyboard.nextLine();
+
+            if(encounter.equals("s")){
+                playerShoot(); // simulates shooting motion for player
+            } else {
+                // TODO: have option for user to run away instead and avoid fighting the enemy
+                System.out.println("did not shoot && ran away instead TEST");
+                loop = false;
+            }
+
+            // checks if enemy is dead or alive
+            if (enemy.deadAlive()) {
+                ui.enemyDied();
+                loop = false;
+            } else {
+                ui.enemyHealth(enemy.getHealth()); // prints enemy health
+            }
+        }
+    }
+
+    /**
+     * simulates player pulling the trigger
+     */
+    public void playerShoot(){
+        player.playerShoot(); // subtracts bullet from capacity
+        player.playerGunDamage(); // returns damage inflicted to be used to hurt the enemy
+
+        enemy.enemyHit(player.playerGunDamage()); // simulates enemy getting hit. 
     }
 
     /**
      * increment steps by 1
+     * to exit dungeon
      */
     public void incrementSteps(){
         steps++;

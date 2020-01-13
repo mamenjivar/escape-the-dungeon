@@ -38,7 +38,7 @@ class Enemy{
     public boolean deadAlive() {
         boolean statusHealth;
 
-        if (health == DEAD_HEALTH) {
+        if (health <= DEAD_HEALTH) {
             statusHealth = true;
         } else {
             statusHealth = false;
