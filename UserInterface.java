@@ -124,6 +124,7 @@
 
     /**
      * Have player select weapon to use
+     * prompt
      */
     public void weaponSelect() {
         System.out.println("Please choose a weapon:\n"
@@ -140,6 +141,57 @@
                             + "      Clip: 10 rounds\n"
                             + "      Damage: 2" );
         System.out.print(">> ");
+    }
+
+    /**
+     * prints out gun counter and how much ammunition
+     * is remaining in the weapon
+     * 
+     * @param gunType 
+     * 1 = Handgun
+     * 2 = Shotgun
+     * 3 = Rifle 
+     * @param gunCounter
+     * How many bullets remain in weapon
+     */
+    public void gunCounter(int gunType, int gunCounter){
+        switch(gunType){
+            case 1:
+                System.out.println("handgun: " + gunCounter + " round(s) remaining");
+                break;
+            case 2:
+                System.out.println("Shotgun: " + gunCounter + " round(s) remaining");
+                break;
+            case 3:
+                System.out.println("Rifle: " + gunCounter + " round(s) remaining");
+                break;
+            default:
+                System.out.println("");
+        }
+    }
+
+    /**
+     * prints whether if 
+     * weapon hits or misses its target
+     * 
+     * @param hitMiss
+     * 1 = hit
+     * 0 = miss
+     */
+    public void hitMiss(int hitMiss){
+        if(hitMiss == 1){
+            System.out.println("HIT!");
+        } else{
+            System.out.println("MISS!");
+        }
+    }
+
+    /**
+     * when player decides to run away
+     * from encounter
+     */
+    public void runAway(){
+        System.out.println("RAN AWAY");
     }
 
     /**

@@ -16,7 +16,6 @@ class GameEngine{
     Scanner keyboard; 
 
     // 10 steps to exit dungeon
-    // 0-9 for programming purposes = 10
     final int MAX_STEPS = 10;
 
     int steps; // amount of steps user takes
@@ -91,7 +90,6 @@ class GameEngine{
         // loops until 10 steps taken to exit cave
         for(int i = 0; i < MAX_STEPS; i++){
             ui.stepsTaken(steps + 1); // steps taken so far
-            ui.playerHealth(player.getHealth());
             situation();
             incrementSteps(); // step taken after every encounter/situation
         }
@@ -101,7 +99,8 @@ class GameEngine{
     }
 
     /**
-     * 
+     * prompts user to choose what weapon
+     * to use for the course of the game
      */
     public void weaponSelect(){
         // makes player choose the
@@ -127,23 +126,25 @@ class GameEngine{
 
         // loops for user to choose if wants to pull trigger or not
         while(loop){
+            ui.playerHealth(player.getHealth()); // player health
             ui.encounter(); // shoot or run
             encounter = keyboard.nextLine();
 
             if(encounter.equals("s")){
                 playerShoot(); // simulates shooting motion for player
-            } else {
-                // TODO: have option for user to run away instead and avoid fighting the enemy
-                System.out.println("did not shoot && ran away instead TEST");
-                loop = false;
-            }
+                ui.hitMiss(1); // TODO: change parameter to match hit or miss
+                ui.gunCounter(weaponNum, player.weaponCapacity()); 
 
-            // checks if enemy is dead or alive
-            if (enemy.deadAlive()) {
-                ui.enemyDied();
-                loop = false;
+                // checks if enemy is dead or alive
+                if (enemy.deadAlive()) {
+                    ui.enemyDied();
+                    loop = false;
+                } else {
+                    ui.enemyHealth(enemy.getHealth()); // prints enemy health
+                }
             } else {
-                ui.enemyHealth(enemy.getHealth()); // prints enemy health
+                ui.runAway();
+                loop = false;
             }
         }
     }

@@ -78,6 +78,15 @@ class Player {
     }
 
     /**
+     * has current ammunition capacity 
+     * 
+     * @return
+     */
+    public int weaponCapacity(){
+        return weapon.getGunAmmunition();
+    }
+
+    /**
      * setter for health
      * 
      * @param health
