@@ -87,6 +87,25 @@ class Player {
     }
 
     /**
+     * Checks if the capacity of the weapon
+     * is empty
+     * 
+     * @return isEmpty
+     * true = capacity empty
+     * false = not empty
+     */
+    public boolean isWeaponEmpty(){
+        boolean isEmpty;
+        if(weapon.getGunAmmunition() <= 0) {
+            isEmpty = true;
+        } else {
+            isEmpty = false;
+        }
+
+        return isEmpty;
+    }
+
+    /**
      * setter for health
      * 
      * @param health

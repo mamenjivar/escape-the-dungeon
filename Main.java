@@ -1,7 +1,9 @@
 /**
+ * Escape the Dungeon
+ * 
  * Author: Miguel Menjivar
  * 
- * Escape the Dungeon:
+ * Synopsis:
  * The user has to take 10 steps in order to exit the dungeon.
  * For every step the user takes, enemies might spawn and attack
  * the user. The user has the opportunity to use weapons to fend off

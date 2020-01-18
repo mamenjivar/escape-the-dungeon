@@ -144,6 +144,14 @@
     }
 
     /**
+     * When user chooses an option other than the ones provided
+     * Will show an error message that option doesn't exist
+     */
+    public void mainMenuChoiceDNE() {
+        System.out.println("This option does not exist! (Main Menu && UI)");
+    }
+
+    /**
      * prints out gun counter and how much ammunition
      * is remaining in the weapon
      * 
@@ -187,11 +195,40 @@
     }
 
     /**
+     * Prints if there is no ammunition
+     * in the clip and player can't shoot
+     * enemy
+     */
+    public void weaponEmpty(){
+        System.out.println("THE CLIP IS EMPTY! CAN'T SHOOT!");
+    }
+
+    /**
      * when player decides to run away
      * from encounter
      */
     public void runAway(){
         System.out.println("RAN AWAY");
+    }
+
+    /**
+     * Information about the author of the
+     * game
+     * 
+     * TODO: input information about author below
+     */
+    public void author(){
+        System.out.println("");
+    }
+
+    /**
+     * Information about elements of the game
+     * what weapons available, enemies, powerup information, etc
+     * 
+     * TODO: fill out information below about game elements
+     */
+    public void gameElements(){
+        System.out.println("");
     }
 
     /**

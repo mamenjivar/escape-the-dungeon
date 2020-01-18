@@ -58,6 +58,7 @@ class GameEngine{
         ui.mainMenu();
         num = keyboard.nextInt();
 
+        // TODO: add other cases for main menu
         switch(num){
             case 1: // game start
                 gameStart();
@@ -66,14 +67,16 @@ class GameEngine{
                 ui.aboutGame();
                 break;
             case 3: // about author
+                ui.author();
                 break;
             case 4: // game elements
+                ui.gameElements();
                 break;
             case 5: // exit game
                 exit();
                 break;
-            default:
-
+            default: // option doesn't exist
+                ui.mainMenuChoiceDNE();
         }
     }
 
@@ -130,6 +133,8 @@ class GameEngine{
             ui.encounter(); // shoot or run
             encounter = keyboard.nextLine();
 
+            // simulates user pulling trigger
+            // or running away 
             if(encounter.equals("s")){
                 playerShoot(); // simulates shooting motion for player
                 ui.hitMiss(1); // TODO: change parameter to match hit or miss
@@ -142,7 +147,7 @@ class GameEngine{
                 } else {
                     ui.enemyHealth(enemy.getHealth()); // prints enemy health
                 }
-            } else {
+            } else { // when you run away from encounter
                 ui.runAway();
                 loop = false;
             }
@@ -150,13 +155,35 @@ class GameEngine{
     }
 
     /**
+     * When enemy spawns
+     * randomize it
+     */
+    public void enemySpawn(){
+
+    }
+
+    /**
+     * logic when a powerup
+     * drops after encounter
+     * 
+     * TODO: randomize the powerup
+     * ammo, health
+     */
+    public void powerUp(){
+
+    }
+
+    /**
      * simulates player pulling the trigger
      */
     public void playerShoot(){
-        player.playerShoot(); // subtracts bullet from capacity
-        player.playerGunDamage(); // returns damage inflicted to be used to hurt the enemy
+        if(player.isWeaponEmpty()){ // true = empty
+            ui.weaponEmpty();
+        } else {
+            player.playerShoot(); // subtracts bullet from capacity
 
-        enemy.enemyHit(player.playerGunDamage()); // simulates enemy getting hit. 
+            enemy.enemyHit(player.playerGunDamage()); // simulates enemy getting hit.
+        }
     }
 
     /**
