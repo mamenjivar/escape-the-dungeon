@@ -179,6 +179,46 @@
     }
 
     /**
+     * When the player finds a powerup
+     * after an encounter.
+     * 
+     * ammo = 1; health = 2; nothing = 3
+     */
+    public void powerUp(int printPowerUp){
+        switch (printPowerUp) {
+            case 1:
+                System.out.println("YOU FOUND AMMUNITION!");
+                break;
+            case 2:
+                System.out.println("YOU FOUND A HEALTH PACK!");
+            case 3:
+                System.out.println("NOTHING WAS FOUND");
+            default:
+                System.out.println("NOT A POWERUP");
+                break;
+        }
+    }
+
+    /**
+     * After health has been added to the player
+     * 
+     * @param health
+     */
+    public void healthUp(int health){
+        System.out.println("You now have " + health + " points");
+    }
+
+    /**
+     * After ammunition has been added to player's
+     * weapon
+     * 
+     * @param ammo
+     */
+    public void ammoUp(int ammo){
+        System.out.println("You have " + ammo + " rounds total");
+    }
+
+    /**
      * prints whether if 
      * weapon hits or misses its target
      * 

@@ -69,6 +69,14 @@ class Weapon{
     }
 
     /**
+     * when player gets a powerUp
+     * adds 3 bullets to weapon
+     */
+    public void ammoUp(){
+        gunAmmunition += 3;
+    }
+
+    /**
      * When the user inflicts damage to enemy
      * or when enemy inflicts damage to user
      * 

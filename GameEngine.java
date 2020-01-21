@@ -7,13 +7,16 @@
  * Will handle all the logic of the game
  */
 import java.util.Scanner;
+import java.util.Random;
 
 class GameEngine{
     UserInterface ui;
     Player player;
     Enemy enemy;
+    PowerUp pUp; // MAY DELETE
 
-    Scanner keyboard; 
+    Scanner keyboard;
+    Random rand;
 
     // 10 steps to exit dungeon
     final int MAX_STEPS = 10;
@@ -26,6 +29,7 @@ class GameEngine{
     public GameEngine(){
         ui = new UserInterface();
         player = new Player(); // might need to remove from here in order to create multiple players for multiple games
+        pUp = new PowerUp(); // MAY DELETE
 
         keyboard = new Scanner(System.in);
 
@@ -141,12 +145,12 @@ class GameEngine{
                 ui.gunCounter(weaponNum, player.weaponCapacity()); 
 
                 // checks if enemy is dead or alive
-                if (enemy.deadAlive()) { // enemy is dead
+                if (enemy.deadAlive()) { // DEAD
                     ui.enemyDied();
                     loop = false;
 
-                    
-                } else {
+                    powerUp();
+                } else { // ALIVE
                     ui.enemyHealth(enemy.getHealth()); // prints enemy health
                 }
             } else { // when you run away from encounter
@@ -158,9 +162,10 @@ class GameEngine{
 
     /**
      * When enemy spawns
-     * randomize it
+     * randomize it with weapon
      */
     public void enemySpawn(){
+        enemy = new Enemy();
 
     }
 
@@ -168,11 +173,27 @@ class GameEngine{
      * logic when a powerup
      * drops after encounter
      * 
-     * TODO: randomize the powerup
-     * ammo, health
+     * ammo = 1; health = 2; nothing = 3
      */
     public void powerUp(){
+        int powerUpSpawn = rand.nextInt((3) + 1);
 
+        switch(powerUpSpawn){
+            case 1: // AMMO
+                player.ammoPowerUp();
+                ui.powerUp(powerUpSpawn);
+                ui.ammoUp(player.weaponCapacity());
+                break;
+            case 2: // HEALTH
+                player.healthPowerup();
+                ui.powerUp(powerUpSpawn);
+                ui.healthUp(player.getHealth());
+                break;
+            case 3: // NOTHING
+                ui.powerUp(powerUpSpawn);
+                break;
+            default:
+        }
     }
 
     /**

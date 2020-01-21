@@ -16,7 +16,9 @@ class Player {
     final private int MAX_HEALTH = 20;
     final private int DEAD_HEALTH = 0;
 
-    // constructor
+    /**
+     * constructor
+     */
     public Player(){
         health = MAX_HEALTH;
         weapon = new Weapon();
@@ -43,7 +45,7 @@ class Player {
      * will return the damage caused by 
      * weapon of choice
      * 
-     * @return 
+     * @return weapon damage
      */
     public int playerGunDamage(){
         return weapon.damage();
@@ -103,6 +105,24 @@ class Player {
         }
 
         return isEmpty;
+    }
+
+    /**
+     * When the player picks up a health powerup
+     * it adds to total health of player
+     * 
+     * will heal a total of 5 health points
+     */
+    public void healthPowerup(){
+        health += 5;
+    }
+
+    /**
+     * When player gets ammunition
+     * for weapon powerUp
+     */
+    public void ammoPowerUp(){
+        weapon.ammoUp();
     }
 
     /**

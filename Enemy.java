@@ -7,6 +7,9 @@
  * Has all enemy attributes
  */
 class Enemy{
+    Weapon weapon;
+
+    // amount of health enemy will have
     private int health;
 
     final private int MAX_HEALTH = 5;
@@ -17,6 +20,7 @@ class Enemy{
      */
     public Enemy(){
         health = MAX_HEALTH;
+        weapon = new Weapon();
     }
 
     /**
@@ -26,6 +30,32 @@ class Enemy{
      */
     public void enemyHit(int hitPoint){
         health -= hitPoint;
+    }
+
+    /**
+     * simulates enemy pulling the trigger
+     */
+    public void enemyShoot(){
+        weapon.shoot();
+    }
+
+    /**
+     * finalizes weapon choice for enemy
+     * 
+     * @param choice
+     */
+    public void chooseWeapon(int choice){
+        weapon.chooseWeapon(choice);
+    }
+
+    /**
+     * returns damage caused by weapon
+     * of choice
+     * 
+     * @return weapon damage
+     */
+    public int enemyGunDamage(){
+        return weapon.damage();
     }
 
     /**
