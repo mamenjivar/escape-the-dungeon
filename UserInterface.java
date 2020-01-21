@@ -100,16 +100,16 @@
     public void selectedWeapon(int weaponNumber){
         switch(weaponNumber){
             case 1: 
-                System.out.println("You have selected the Handgun");
+                System.out.println("You have selected the Handgun\n");
                 break;
             case 2:
-                System.out.println("You have selected the Shotgun");
+                System.out.println("You have selected the Shotgun\n");
                 break;
             case 3:
-                System.out.println("You have selected the Rifle");
+                System.out.println("You have selected the Rifle\n");
                 break;
             default:
-                System.out.println("Weapon does not exist (UI)");
+                System.out.println("Weapon does not exist (UI)\n");
         }
     }
 
@@ -191,8 +191,10 @@
                 break;
             case 2:
                 System.out.println("YOU FOUND A HEALTH PACK!");
+                break;
             case 3:
                 System.out.println("NOTHING WAS FOUND");
+                break;
             default:
                 System.out.println("NOT A POWERUP");
                 break;

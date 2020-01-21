@@ -13,7 +13,6 @@ class GameEngine{
     UserInterface ui;
     Player player;
     Enemy enemy;
-    PowerUp pUp; // MAY DELETE
 
     Scanner keyboard;
     Random rand;
@@ -29,9 +28,9 @@ class GameEngine{
     public GameEngine(){
         ui = new UserInterface();
         player = new Player(); // might need to remove from here in order to create multiple players for multiple games
-        pUp = new PowerUp(); // MAY DELETE
 
         keyboard = new Scanner(System.in);
+        rand = new Random();
 
         steps = 0;
         weaponNum = 0;
@@ -52,6 +51,8 @@ class GameEngine{
     /**
      * Option for user to choose
      * main menu
+     * 
+     * TODO: try catch for no letters
      */
     public void choices(){
         // saves number for choice
@@ -166,6 +167,19 @@ class GameEngine{
      */
     public void enemySpawn(){
         enemy = new Enemy();
+        int enemyGun = rand.nextInt((3) + 1);
+
+        enemy.chooseWeapon(enemyGun);
+    }
+
+    /**
+     * when both enemy and player shoot eachother
+     * 
+     */
+    public void duel(){
+        int randShoot;
+
+        randShoot = rand.nextInt((10) + 1);
 
     }
 
@@ -176,7 +190,7 @@ class GameEngine{
      * ammo = 1; health = 2; nothing = 3
      */
     public void powerUp(){
-        int powerUpSpawn = rand.nextInt((3) + 1);
+        int powerUpSpawn = rand.nextInt(3) + 1;
 
         switch(powerUpSpawn){
             case 1: // AMMO
