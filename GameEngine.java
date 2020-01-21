@@ -141,9 +141,11 @@ class GameEngine{
                 ui.gunCounter(weaponNum, player.weaponCapacity()); 
 
                 // checks if enemy is dead or alive
-                if (enemy.deadAlive()) {
+                if (enemy.deadAlive()) { // enemy is dead
                     ui.enemyDied();
                     loop = false;
+
+                    
                 } else {
                     ui.enemyHealth(enemy.getHealth()); // prints enemy health
                 }
