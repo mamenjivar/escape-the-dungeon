@@ -187,16 +187,16 @@
     public void powerUp(int printPowerUp){
         switch (printPowerUp) {
             case 1:
-                System.out.println("YOU FOUND AMMUNITION!");
+                System.out.println("YOU FOUND AMMUNITION!\n");
                 break;
             case 2:
-                System.out.println("YOU FOUND A HEALTH PACK!");
+                System.out.println("YOU FOUND A HEALTH PACK!\n");
                 break;
             case 3:
-                System.out.println("NOTHING WAS FOUND");
+                System.out.println("NOTHING WAS FOUND\n");
                 break;
             default:
-                System.out.println("NOT A POWERUP");
+                System.out.println("NOT A POWERUP\n");
                 break;
         }
     }

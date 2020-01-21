@@ -129,8 +129,7 @@ class GameEngine{
         boolean loop = true;
         String encounter = null;
 
-        enemy = new Enemy(); // creates new enemy to fight
-        ui.enemyHealth(enemy.getHealth()); // tracks enemy health
+        enemySpawn();
 
         // loops for user to choose if wants to pull trigger or not
         while(loop){
@@ -138,12 +137,11 @@ class GameEngine{
             ui.encounter(); // shoot or run
             encounter = keyboard.nextLine();
 
-            // simulates user pulling trigger
+            // simulates player pulling trigger
             // or running away 
             if(encounter.equals("s")){
-                playerShoot(); // simulates shooting motion for player
-                ui.hitMiss(1); // TODO: change parameter to match hit or miss
-                ui.gunCounter(weaponNum, player.weaponCapacity()); 
+
+                duel();
 
                 // checks if enemy is dead or alive
                 if (enemy.deadAlive()) { // DEAD
@@ -157,6 +155,8 @@ class GameEngine{
             } else { // when you run away from encounter
                 ui.runAway();
                 loop = false;
+
+                powerUp();
             }
         }
     }
@@ -167,6 +167,7 @@ class GameEngine{
      */
     public void enemySpawn(){
         enemy = new Enemy();
+        ui.enemyHealth(enemy.getHealth()); // tracks enemy health
         int enemyGun = rand.nextInt((3) + 1);
 
         enemy.chooseWeapon(enemyGun);
@@ -174,13 +175,35 @@ class GameEngine{
 
     /**
      * when both enemy and player shoot eachother
-     * 
+     * randomize if hit or miss
      */
     public void duel(){
         int randShoot;
 
+        // player shooting randmization
         randShoot = rand.nextInt((10) + 1);
+        if(randShoot < 5){ // miss
+            ui.hitMiss(0); // TODO: label if for player or enemy
+            player.playerShoot();
+        } else { // hit
+            player.playerShoot();
+            ui.hitMiss(1);
+            ui.gunCounter(weaponNum, player.weaponCapacity());
 
+            enemy.enemyHit(player.playerGunDamage());
+        }
+
+        // enemy shooting randomization
+        randShoot = rand.nextInt((10) + 1);
+        if(randShoot < 5){ // miss
+            ui.hitMiss(0);
+            
+        } else { // hit
+            enemy.enemyShoot();
+            ui.hitMiss(1);
+
+            player.playerHit(enemy.enemyGunDamage());
+        }
     }
 
     /**
@@ -240,7 +263,7 @@ class GameEngine{
      */
     public boolean exitDungeon(){
         boolean dungeonFree;
-        if(steps == MAX_STEPS) {
+        if(steps == MAX_STEPS - 1) {
             dungeonFree = true;
         } else {
             dungeonFree = false;

@@ -19,9 +19,9 @@ class Weapon{
     // rifle = 3
 
     // holds the max capacity of each weapon
-    final private int MAX_HANDGUN_AMMO = 5;
-    final private int MAX_SHOTGUN_AMMO = 6;
-    final private int MAX_RIFLE_AMMO = 7;
+    final private int MAX_HANDGUN_AMMO = 20;
+    final private int MAX_SHOTGUN_AMMO = 20;
+    final private int MAX_RIFLE_AMMO = 20;
 
     // holds total damage of each weapon
     final private int MAX_DAMAGE_HANDGUN = 1;
