@@ -83,6 +83,10 @@
         System.out.println("The Enemy has died!");
     }
 
+    public void playerDied(){
+        System.out.println("The player has died! - GAME OVER");
+    }
+
     /**
      * prompts user to shoot or run away
      * when they encounter an enemy
@@ -295,23 +299,51 @@
     }
 
     /**
+     * When user chooses a letter instead
+     * of a number when making a decision
+     * in main menu
+     */
+    public void menuMainError(){
+        System.out.println("Please choose a NUMBER");
+    }
+
+    /**
+     * When user makes error and chooses letter
+     * instead of a number when making decision
+     * to choose a weapon
+     */
+    public void weaponSelectError(){
+        System.out.println("Please choose a NUMBER from choices provided");
+    }
+
+    /**
      * Information about the author of the
      * game
      * 
-     * TODO: input information about author below
      */
     public void author(){
-        System.out.println("");
+        System.out.println("Author: Miguel Menjivar");
     }
 
     /**
      * Information about elements of the game
      * what weapons available, enemies, powerup information, etc
      * 
-     * TODO: fill out information below about game elements
      */
     public void gameElements(){
-        System.out.println("");
+        System.out.println("Enemy: Has a total of 5 health points\n"
+                        +  "       Has unlimited ammunition\n"
+                        + "Player: Has 20 health points\n"
+                        + "        Has 20 ammunition"
+                        + "Health Pack: adds 5 points to total health\n"
+                        + "Ammo Pack: adds 10 bullets to ammunition total\n"
+                        + "Types of weapons:\n"
+                        + "     1) Handgun\n"
+                        + "           i) Damage: 1\n"
+                        + "     2) Shotgun\n"
+                        + "           i) Damage: 3\n"
+                        + "     3) Rifle\n"
+                        + "           i) Damage: 2\n");
     }
 
     /**

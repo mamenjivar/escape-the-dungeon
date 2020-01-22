@@ -52,19 +52,29 @@ class GameEngine{
     /**
      * Option for user to choose
      * main menu
-     * 
-     * TODO: try catch for no letters
      */
     public void choices(){
         // saves number for choice
         int num = 0;
+        boolean menuMainLoop = true;
 
-        // prints out main menu
-        // keyboard input user
-        ui.mainMenu();
-        num = keyboard.nextInt();
+        while(menuMainLoop){
 
-        // TODO: add other cases for main menu
+            ui.mainMenu();
+            try {
+                // prints out main menu
+                // keyboard input user
+                num = keyboard.nextInt();
+                
+                menuMainLoop = false;
+            } catch (Exception e) {
+                keyboard.next();
+                e.printStackTrace();
+                ui.menuMainError();
+            }
+
+        }
+
         switch(num){
             case 1: // game start
                 gameStart();
@@ -112,13 +122,24 @@ class GameEngine{
      * to use for the course of the game
      */
     public void weaponSelect(){
-        // makes player choose the
-        // type of weapon to use
-        ui.weaponSelect();
-        weaponNum = keyboard.nextInt();
-        keyboard.nextLine();
-        player.chooseWeapon(weaponNum);
+        boolean weaponSelectLoop = true;
 
+        while(weaponSelectLoop){
+            try {
+                // makes player choose the
+                // type of weapon to use
+                ui.weaponSelect();
+                weaponNum = keyboard.nextInt();
+                keyboard.nextLine();
+
+                weaponSelectLoop = false;
+            } catch (Exception e) {
+                e.printStackTrace();
+                keyboard.next();
+                ui.weaponSelectError();
+            }
+        }
+        player.chooseWeapon(weaponNum);
         ui.selectedWeapon(weaponNum);
     }
 
@@ -130,6 +151,7 @@ class GameEngine{
         boolean loop = true;
         String encounter = null;
 
+        // when an enemy spawns
         enemySpawn();
 
         // loops for user to choose if wants to pull trigger or not
@@ -142,14 +164,18 @@ class GameEngine{
             // or running away 
             if(encounter.equals("s")){
 
+                // when both player and enemy shoot randomizer
                 duel();
 
                 // checks if enemy is dead or alive
-                if (enemy.deadAlive()) { // DEAD
+                if (enemy.deadAlive()) { // enemy DEAD
                     ui.enemyDied();
                     loop = false;
 
                     powerUp();
+                } else if(player.deadAlive()){ // player dead
+                    ui.playerDied();
+                    exit();
                 } else { // ALIVE
                     ui.enemyHealth(enemy.getHealth()); // prints enemy health
                 }
@@ -187,17 +213,8 @@ class GameEngine{
         // player shooting randmization
         randShoot = rand.nextInt(10) + 1;
         if(randShoot < 5){ // miss
-            // MOVE THIS TO ANOTHER METHOD TO SIMPLIFY CODE BECAUSE SAME IF AND ELSE 
-            // TODO: read above to move info to another function
-            // player.playerShoot();
-            // ui.hitMiss(0);
-            // ui.gunCounter(weaponNum, player.weaponCapacity());
-
             randShootPlayer(0);
         } else { // hit
-            // player.playerShoot();
-            // ui.hitMiss(1);
-            // ui.gunCounter(weaponNum, player.weaponCapacity());
             randShootPlayer(1);
 
             enemy.enemyHit(player.playerGunDamage());
@@ -213,7 +230,6 @@ class GameEngine{
             ui.hitMiss(3);
 
             player.playerHit(enemy.enemyGunDamage());
-            // player.playerHit(1);
         }
     }
 
