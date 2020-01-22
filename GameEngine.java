@@ -22,6 +22,7 @@ class GameEngine{
 
     int steps; // amount of steps user takes
     int weaponNum; // type of weapon by player
+    int enemyGun; // random weapon for enemy to use after each spawn
 
 
     // Constructor
@@ -167,10 +168,13 @@ class GameEngine{
      */
     public void enemySpawn(){
         enemy = new Enemy();
-        ui.enemyHealth(enemy.getHealth()); // tracks enemy health
-        int enemyGun = rand.nextInt((3) + 1);
-
+        enemyGun = rand.nextInt(3) + 1;
         enemy.chooseWeapon(enemyGun);
+
+        // prints enemy information
+        ui.enemySpawn();
+        ui.enemyHealth(enemy.getHealth());
+        ui.enemyWeapon(enemyGun);
     }
 
     /**
@@ -181,29 +185,49 @@ class GameEngine{
         int randShoot;
 
         // player shooting randmization
-        randShoot = rand.nextInt((10) + 1);
+        randShoot = rand.nextInt(10) + 1;
         if(randShoot < 5){ // miss
-            ui.hitMiss(0); // TODO: label if for player or enemy
-            player.playerShoot();
+            // MOVE THIS TO ANOTHER METHOD TO SIMPLIFY CODE BECAUSE SAME IF AND ELSE 
+            // TODO: read above to move info to another function
+            // player.playerShoot();
+            // ui.hitMiss(0);
+            // ui.gunCounter(weaponNum, player.weaponCapacity());
+
+            randShootPlayer(0);
         } else { // hit
-            player.playerShoot();
-            ui.hitMiss(1);
-            ui.gunCounter(weaponNum, player.weaponCapacity());
+            // player.playerShoot();
+            // ui.hitMiss(1);
+            // ui.gunCounter(weaponNum, player.weaponCapacity());
+            randShootPlayer(1);
 
             enemy.enemyHit(player.playerGunDamage());
         }
 
         // enemy shooting randomization
-        randShoot = rand.nextInt((10) + 1);
+        randShoot = rand.nextInt(10) + 1;
         if(randShoot < 5){ // miss
-            ui.hitMiss(0);
+            ui.hitMiss(2);
             
         } else { // hit
             enemy.enemyShoot();
-            ui.hitMiss(1);
+            ui.hitMiss(3);
 
             player.playerHit(enemy.enemyGunDamage());
+            // player.playerHit(1);
         }
+    }
+
+    /**
+     * simulates shooting weapon
+     * and randomizes hit or miss
+     * for player
+     * 
+     * @param hitMiss
+     */
+    public void randShootPlayer(int hitMiss){
+        player.playerShoot();
+        ui.hitMiss(hitMiss);
+        ui.gunCounter(weaponNum, player.weaponCapacity());      
     }
 
     /**

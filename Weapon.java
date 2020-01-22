@@ -70,10 +70,10 @@ class Weapon{
 
     /**
      * when player gets a powerUp
-     * adds 3 bullets to weapon
+     * adds 10 bullets to weapon
      */
     public void ammoUp(){
-        gunAmmunition += 3;
+        gunAmmunition += 10;
     }
 
     /**

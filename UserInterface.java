@@ -72,7 +72,7 @@
      * @param health
      */
     public void enemyHealth(int health) {
-        System.out.println("Enemy has " + health + " health remaining.\n");
+        System.out.println("Enemy has " + health + " health remaining.");
     }
 
     /**
@@ -190,7 +190,7 @@
                 System.out.println("YOU FOUND AMMUNITION!\n");
                 break;
             case 2:
-                System.out.println("YOU FOUND A HEALTH PACK!\n");
+                System.out.println("YOU FOUND A HEALTH PACK!");
                 break;
             case 3:
                 System.out.println("NOTHING WAS FOUND\n");
@@ -207,7 +207,7 @@
      * @param health
      */
     public void healthUp(int health){
-        System.out.println("You now have " + health + " points");
+        System.out.println("You now have " + health + " points\n");
     }
 
     /**
@@ -225,14 +225,27 @@
      * weapon hits or misses its target
      * 
      * @param hitMiss
-     * 1 = hit
-     * 0 = miss
+     * 0-1 Player Miss/Hit
+     * 2-3 Enemy Miss/Hit
      */
     public void hitMiss(int hitMiss){
-        if(hitMiss == 1){
-            System.out.println("HIT!");
-        } else{
-            System.out.println("MISS!");
+        switch(hitMiss){
+            case 0:
+                System.out.println("Player: MISS!");
+                break;
+            case 1:
+                System.out.println("Player: HIT!");
+                break;
+            case 2:
+                System.out.println("Enemy: MISS!\n");
+                break;
+            case 3:
+                System.out.println("Enemy: HIT!\n");
+                break;
+            case 4:
+                System.out.println("UNDEFINED HIT");
+                break;
+            default:
         }
     }
 
@@ -250,7 +263,35 @@
      * from encounter
      */
     public void runAway(){
-        System.out.println("RAN AWAY");
+        System.out.println("RAN AWAY\n");
+    }
+
+    /**
+     * When an enemy has spawned 
+     * during an encounter
+     */
+    public void enemySpawn(){
+        System.out.println("ENEMY HAS SPAWNED!");
+    }
+
+    /**
+     * will print what type of gun
+     * the enemy spawned with 
+     */
+    public void enemyWeapon(int enemyGun){
+        switch(enemyGun){
+            case 1:
+                System.out.println("Weapon: HANDGUN");
+                break;
+            case 2:
+                System.out.println("Weapon: SHOTGUN");
+                break;
+            case 3:
+                System.out.println("Weapon: RIFLE");
+                break;
+            default:
+                System.out.println("Weapon does not exist (enemy)");
+        }
     }
 
     /**
